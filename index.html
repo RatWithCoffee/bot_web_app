@@ -9,12 +9,28 @@
 </head>
 
 <body>
-	<main>
+	<form id="survey">
 		<div>
-			welcome
+			<label for="name">Название опроса: </label>
+			<input type="text" id="name" name="name" required />
+			<label for="description">Описание: </label>
+			<input type="text" id="description" required />
 		</div>
-        <button id="close_app">close</button> 
-	</main>
+		<div>
+			<div id="question1">
+				<label for="description">Текст вопроса: </label>
+				<input type="text" id="text1" required />
+			</div>
+			<div id="question2">
+				<label for="description">Текст вопроса: </label>
+				<input type="text" id="description" required />
+				<div>Варианты:</div>
+				<input type="text" id="ans1">
+				<input type="text" id="ans2">
+				<input type="text" id="ans3">
+			</div>
+			<input  type="submit" id="close_app" value="Save and close app"/>
+			</form>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<script src="./web-app.js" type="module"></script>
 </body>
