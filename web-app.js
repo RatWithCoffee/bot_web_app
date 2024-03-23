@@ -16,7 +16,7 @@ const data = {
 
 const closeAppButton = document.getElementById('close_app');
 closeAppButton.addEventListener('click', () => {
-    tg.sendData(JSON.stringify({data:'test'}));
+    tg.sendData(JSON.stringify(data));
     console.log(data);
     tg.close();
 })
