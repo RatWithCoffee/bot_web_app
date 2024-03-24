@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Form Style</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .answer-option {
+    margin-bottom: 10px;
+  }
+  
+  .answer-option label {
+    display: block;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .answer-option label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+  :root {
+  --input-border-color: #000;
+  --input-focus-color: #00f;
+}
+
+:root {
+  --input-border-color: #000;
+  --input-focus-color: #00f;
+}
+
+.custom-input {
+  border: none;
+  border-bottom: 1px solid var(--input-border-color);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: var(--input-focus-color);
+}
+
+.custom-input::placeholder {
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.custom-input:focus::placeholder {
+  color: transparent;
+}
+
+.custom-input:focus {
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <input type="text" placeholder="Введите текст" class="custom-input">
+
+<div class="container">
+
+  <div class="question">
+    <p>What is your favorite programming language?</p>
+  </div>
+  <div class="answer-options">
+    <div class="answer-option">
+      <input type="radio" id="option1" name="language" value="option1">
+      <label for="option1">JavaScript</label>
+    </div>
+    <div class="answer-option">
+      <input type="radio" id="option2" name="language" value="option2">
+      <label for="option2">Python</label>
+    </div>
+    <div class="answer-option">
+      <input type="radio" id="option3" name="language" value="option3">
+      <label for="option3">Java</label>
+    </div>
+    <div class="answer-option">
+      <input type="radio" id="option4" name="language" value="option4">
+      <label for="option4">C++</label>
+    </div>
+  </div>
+  <button class="submit-btn">Submit</button>
+</div>
+
+</body>
+</html>

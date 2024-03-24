@@ -9,32 +9,72 @@
 </head>
 
 <body>
-	<form id="survey">
-		<div>
-			<label for="name">Название опроса: </label>
-			<input type="text" id="name" name="name" required />
-			<br></br>
-			<label for="description">Описание: </label>
-			<input type="text" id="description" required />
+
+	<div class="main-container">
+		<!-- <div class="container"> -->
+			<div class="question-container">
+				<input type="text" placeholder="Название опроса" class="title" />
+				<input type="text" placeholder="Описание" />
+			</div>
+	
+	
+			<div class="question-container">
+				<input type="text" placeholder="Вопрос" />
+				<div class="checkbox-container">
+					<input type="radio" class="checkbox-input" disabled>
+					<input type="text" class="checkbox-text" placeholder="Ответ">
+					<button class="checkbox-text button-delete">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+							version="1.1" id="Capa_1" width="10px" height="10px" viewBox="0 0 348.333 348.334"
+							xml:space="preserve">
+							<g>
+								<path
+									d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" />
+							</g>
+						</svg>
+						</svg>
+					</button>
+				</div>
+				<button class="custom-button button-plus">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25">
+						<path fill="currentColor" d="M13 11V5h-2v6H5v2h6v6h2v-6h6v-2h-6z" />
+					</svg>
+	
+				</button>
+	
+			</div>
+		<!-- </div> -->
+
+<!-- 
+		<button class="button-plus custom-button">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25">
+				<path fill="currentColor" d="M13 11V5h-2v6H5v2h6v6h2v-6h6v-2h-6z" />
+			</svg>
+			Добавить вопрос
+		</button> -->
+
+	</div>
+
+	<!-- <form class="question-container">
+		<div class="checkbox-container">
+			<input type="radio" id="ony" name="one" class="checkbox-input">
+			<label for="one" class="checkbox-text">Один из списка</label>
+
 		</div>
-		<br></br>
-		<div>
-			<div id="question1">
-				<label for="description">Текст вопроса: </label>
-				<input type="text" id="text1" required />
-			</div>
-			<br></br>
-			<div id="question2">
-				<label for="description">Текст вопроса: </label>
-				<input type="text" id="description" required />
-				<div>Варианты:</div>
-				<input type="text" id="ans1">
-				<input type="text" id="ans2">
-				<input type="text" id="ans3">
-			</div>
-			<br></br>
-			<input  type="submit" id="close_app" value="Save and close app"/>
-			</form>
+		<div class="checkbox-container">
+			<input type="radio" id="many" name="many" class="checkbox-input">
+			<label for="many" class="checkbox-text">Несколько из списка</label>
+		</div>
+		<div class="checkbox-container">
+			<input type="radio" id="text" name="text" class="checkbox-input">
+			<label for="text" class="checkbox-text">Текст</label>
+		</div>
+
+		<input type="sybmit" class="custom-button" value="Добавить" />
+
+	</form> -->
+
+
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
 	<script src="./web-app.js" type="module"></script>
 </body>

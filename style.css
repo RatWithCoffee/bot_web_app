@@ -1,10 +1,159 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: large;
 }
 
+:root {
+    --tg-theme-bg-color: #FFFFFF;
+    /* Белый */
+    --tg-theme-text-color: #000000;
+    /* Черный */
+    --tg-theme-hint-color: #999999;
+    /* Серый */
+    --tg-theme-link-color: #0088CC;
+    /* Синий */
+    --tg-theme-button-color: #0088CC;
+    /* Синий */
+    --tg-theme-button-text-color: #FFFFFF;
+    /* Белый */
+    --tg-theme-secondary-bg-color: #F5F5F5;
+    /* Светло-серый */
+    --tg-theme-header-bg-color: #0088CC;
+    /* Синий */
+    --tg-theme-accent-text-color: #FFA500;
+    /* Оранжевый */
+    --tg-theme-section-bg-color: #cccccc;
+    /* серый */
+    --tg-theme-section-header-text-color: #000000;
+    /* Черный */
+    --tg-theme-subtitle-text-color: #666666;
+    /* Темно-серый */
+}
+
+
 body {
+    font-size: large;
     background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
+}
+
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-height: 100vh; 
+    padding: 0rem 0.1rem;
+}
+
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--tg-theme-section-bg-color);
+    border-radius: 8px;
+    gap: 0.6rem;
+    margin: 0.5rem 0rem;
+    width: 70%;
+}
+
+
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--tg-theme-hint-color);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--tg-theme-button-color);
+}
+
+input::placeholder {
+    color: var(--tg-theme-hint-color);
+    transition: color 0.3s ease;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+input:focus {
+    cursor: pointer;
+    caret-color: var(--tg-theme-button-color);
+}
+
+.title {
+    font-size: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    /* Выравнивание по центру */
+}
+
+.checkbox-text {
+    margin-left: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Стили кнопки */
+.custom-button {
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-text-color);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: var(--tg-theme-button-color);
+    /* Темный синий при наведении */
+}
+
+.custom-button:active {
+    background-color: var(--tg-theme-button-color);
+    /* Чуть более темный синий при нажатии */
+}
+
+.custom-button:focus {
+    outline: none;
+}
+
+.button-plus {
+    border-radius: 40px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--tg-theme-text-color);
+    align-self: flex-start;
+}
+
+.button-delete {
+    align-self: flex-start;
+    border-radius: 50%;
+    width: 1.4rem;
+    height: 1.4rem;
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
 }
