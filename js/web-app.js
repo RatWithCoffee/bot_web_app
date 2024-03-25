@@ -3,16 +3,17 @@ import { questionTypes } from "./components.js";
 
 const tg = window.Telegram.WebApp;
 
-
-
-document.getElementById("add-question").addEventListener("click", () => {
-    document.getElementById("type-selection-form").style.display = "block";
+// document.getElementById("add-question").addEventListener("click", () => {
+//     document.getElementById("type-selection-form").style.display = "block";
+// });
+document.getElementById("add-question").addEventListener("click", function () {
+    document.getElementById("popup-background").style.display = "flex";
 });
+
 
 document.getElementById("type-selection-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const buttonId = event.submitter.id;
-
     switch (buttonId) {
         case "one":
             handleAddQuestion(questionTypes.RADIO);
@@ -23,12 +24,10 @@ document.getElementById("type-selection-form").addEventListener("submit", (event
         case "text":
             handleAddQuestion(questionTypes.TEXT);
             break;
-        case "close":
-            document.getElementById("type-selection-form").style.display = "none";
-            break;
-        default:
-            break;
     }
+
+
+    document.getElementById("popup-background").style.display = "none";
 });
 
 const getNewQuestionId = () => {

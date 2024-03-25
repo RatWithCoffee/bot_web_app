@@ -1,58 +1,47 @@
 * {
     margin: 0;
     padding: 0;
+    font-size: large;
 }
 
 :root {
     --tg-theme-bg-color: #FFFFFF;
     --tg-theme-text-color: #000000;
     --tg-theme-hint-color: #999999;
-    /* Серый */
     --tg-theme-link-color: #0088CC;
-    /* Синий */
     --tg-theme-button-color: #0088CC;
-    /* Синий */
     --tg-theme-button-text-color: #FFFFFF;
-    /* Белый */
     --tg-theme-secondary-bg-color: #F5F5F5;
-    /* Светло-серый */
     --tg-theme-header-bg-color: #0088CC;
-    /* Синий */
     --tg-theme-accent-text-color: #FFA500;
-    /* Оранжевый */
     --tg-theme-section-bg-color: #cccccc;
-    /* серый */
     --tg-theme-section-header-text-color: #000000;
-    /* Черный */
     --tg-theme-subtitle-text-color: #666666;
-    /* Темно-серый */
 }
 
 
 body {
-    font-size: large;
     background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
 }
-
-
 
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    min-height: 100vh; 
+    min-height: 100vh;
     padding: 0rem 0.1rem;
+    gap: 1rem;
 }
 
-.container {
+.container-list {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
-
 
 .question-container {
     display: flex;
@@ -129,22 +118,20 @@ button {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease;
 }
 
 .custom-button:hover {
-    background-color: var(--tg-theme-button-color);
-    /* Темный синий при наведении */
+    transform: scale(1.1);
+    /* Увеличение размера кнопки при наведении */
 }
 
 .custom-button:active {
-    background-color: var(--tg-theme-button-color);
-    /* Чуть более темный синий при нажатии */
+    transform: scale(1);
+    /* Уменьшение размера кнопки при нажатии */
 }
 
-.custom-button:focus {
-    outline: none;
-}
+
 
 .button-plus {
     border-radius: 40px;
@@ -168,11 +155,9 @@ button {
 }
 
 .button-delete {
-    align-self: flex-start;
     border-radius: 50%;
     width: 1.4rem;
     height: 1.4rem;
-    align-self: flex-start;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,17 +173,17 @@ button {
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+}
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider */
-  .slider {
+}
+
+/* The slider */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -208,9 +193,9 @@ button {
     background-color: #434343;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -220,28 +205,58 @@ button {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
-  
+}
+
+
+#popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popup-container {
+    background-color: var(--tg-theme-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    justify-content: end;
+}
+
+/* Остальные стили оставляем без изменений */
