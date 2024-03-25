@@ -1,19 +1,22 @@
-import { components } from "./components.js";
-export const getQuestion = (newId, q) => {
+import { getQuestionHTML, getInputHTML } from "./components.js"
 
 
+
+export const getQuestion = (newId, questionType) => {
+
+
+	const question = getQuestionHTML(questionType);
 	let currAns = 0;
-	const updatedQ = q.replace(/id="([^"]*)"/g, (_, id) => {
-		id = id ? id : "";
-		// q1-ans4
+	const updatedQ = question.replace(/id="([^"]*)"/g, (_, id) => {
 		if (id === "ans") {
 			currAns++;
 			id = "q" + newId + "-ans=" + currAns;
 		} else if (id === "delete-ans-button") {
-			id = "q" + newId + "-delete-ans-button=" + currAns;
+			id = "q" + newId + "-delete-ans-button=" + 1;
 		}
 		else {
-			id += "=" + newId
+			id = id ? id : "";
+			id += "=" + newId;
 		}
 		return `id="${id}"`;
 	});
@@ -23,22 +26,24 @@ export const getQuestion = (newId, q) => {
 }
 
 
-export const getInput = (questionId, input) => {
-	const answers = document.getElementById("list=" + questionId).childElementCount + 1;
+export const getInput = (questionId, type) => {
+	// TODO: edit algo
+	const answerNumber = document.getElementById("list=" + questionId).childElementCount + 1;
+	const input = getInputHTML(type);
 
-	const newInput = input.replace(/id="([^"]*)"/g, (_, id) => {
-		id = id ? id : "";
-		if (id === "ans") {
-			id = "q" + questionId + "-ans=" + answers;
-		} else if (id === "delete-ans-button") {
-			id = "q" + questionId + "-delete-ans-button=" + answers;
+	const newInput = input.replace(/id="([^"]*)"/g, (_, newId) => {
+		if (newId === "ans") {
+			newId = "q" + questionId + "-ans=" + answerNumber;
+		} else if (newId === "delete-ans-button") {
+			newId = "q" + questionId + "-delete-ans-button=" + answerNumber;
 		} else {
-			id += "=" + questionId;
+			newId = newId ? newId : "";
+			newId += "=" + questionId;
 		}
 
-		return `id="${id}"`;
+		return `id="${newId}"`;
 	});
 
-
+	
 	return newInput;
 }
