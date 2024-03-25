@@ -258,3 +258,16 @@ input:checked+.slider:before {
 }
 
 /* Остальные стили оставляем без изменений */
+
+textarea {
+    border-radius: 10px; /* Задаем скругленные углы */
+    border: 2px solid #ccc; /* Обычная граница */
+    transition: border-color 0.3s; /* Плавное изменение цвета границы */
+    outline: none; /* Убираем контур фокуса */
+    padding: 0.2rem;/* Граница при фокусе */
+}
+
+textarea:focus {
+    border-color: var(--tg-theme-button-color); 
+    
+}
