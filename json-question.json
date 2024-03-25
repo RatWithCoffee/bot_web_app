@@ -1,0 +1,32 @@
+{
+    "name": "Имя опроса",
+    "description": "Описание опроса",
+    "questions": [
+        {
+            "text": "Что интересного расскажешь?",
+            "type": "text",
+            "answers": [],
+            "optional": true
+        },
+        {
+            "text": "Как жизнь?",
+            "type": "radio",
+            "answers": [
+                "Херово",
+                "Очень херово"
+            ],
+            "optional": true
+        },
+        {
+            "text": "Этот вопрос с несколькими возможными вариантами ответа",
+            "type": "checkbox",
+            "answers": [
+                "Вар1",
+                "Вар2",
+                "Вар3"
+            ],
+            "optional": false
+        }
+    ]
+}
+
