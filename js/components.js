@@ -3,7 +3,7 @@ import * as svg from './svg.js'
 const textQuestion = `
 <div class="question-container" id="question">
 <div class="row">
-	<input type="text" placeholder="Вопрос" id="text" />
+	<input  autocomplete="off" type="text" placeholder="Вопрос" id="text" />
 	<button class="checkbox-text custom-button button-delete"  id="delete-q-button">
 		${svg.deleteIconBin}
 	</button>
@@ -12,8 +12,8 @@ const textQuestion = `
 
 export const getInputHTML = (type) => {
 	return `<div class="checkbox-container">
-				<input type="${type}" class="checkbox-input " disabled>
-				<input type="text" class="checkbox-text" placeholder="Ответ" id="ans">
+				<input autocomplete="off" type="${type}" class="checkbox-input " disabled>
+				<input autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans">
 				<button class="checkbox-text custom-button button-delete" style="display: block" id="delete-ans-button">
 					${svg.deleteIconCross}
 				</button>
@@ -33,7 +33,7 @@ export const getQuestionHTML = (type) => {
 	return `
 		<div class="question-container" id="question">
 		<div class="row">
-			<input type="text" placeholder="Вопрос" id="text" />
+			<input autocomplete="off" type="text" placeholder="Вопрос" style="width: 100%" id="text" />
 			<button class="checkbox-text custom-button button-delete" id="delete-q-button">
 				${svg.deleteIconBin}
 			</button>

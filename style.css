@@ -27,6 +27,10 @@ body {
     font-family: Arial, sans-serif;
 }
 
+svg {
+    fill: var(--tg-theme-text-color); /* Установите желаемый цвет */
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
