@@ -15,7 +15,7 @@ const switchButton = `
 const textQuestion = `
 <div class="question-container" id="question">
 <div class="row">
-	<textarea  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%"></textarea>
+	<textarea  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%;"></textarea>
 	<button class="checkbox-text custom-button button-delete"  id="delete-q-button">
 		${svg.deleteIconBin}
 	</button>
@@ -46,7 +46,7 @@ export const getQuestionHTML = (type) => {
 	return `
 		<div class="question-container" id="question">
 		<div class="row">
-			<textarea autocomplete="off" type="text" placeholder="Вопрос" style="width: 100%" id="text"></textarea>
+			<textarea autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%;"></textarea>
 			<button class="checkbox-text custom-button button-delete" id="delete-q-button">
 				${svg.deleteIconBin}
 			</button>

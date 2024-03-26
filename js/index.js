@@ -4,15 +4,19 @@ import { questionTypes } from "./components.js";
 const tg = window.Telegram.WebApp;
 
 const tx = document.getElementsByTagName("textarea");
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-  tx[i].addEventListener("input", OnInput, false);
-}
 
 function OnInput() {
-  this.style.height = 'auto';
-  this.style.height = (this.scrollHeight) + "px";
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + "px";
 }
+
+for (let i = 0; i < tx.length; i++) {
+    tx[i].style.height = tx[i].scrollHeight + 'px'; // Устанавливаем высоту
+    tx[i].style.overflowY = 'hidden'; // Устанавливаем скрытие вертикальной прокрутки
+    tx[i].addEventListener("input", OnInput, false);
+}
+
+
 
 document.getElementById("add-question").addEventListener("click", () => {
     document.getElementById("popup-background").style.display = "flex";
@@ -58,6 +62,11 @@ const handleAddQuestion = (questionType) => {
     const newQuestion = getComponent.getQuestion(newId, questionType);
     const qlist = document.getElementById("questions-list");
     qlist.insertAdjacentHTML('beforeEnd', newQuestion);
+
+    const questuonTextArea = document.getElementById("text=" + newId);
+    console.log(questuonTextArea)
+    questuonTextArea.setAttribute("style", "height:" + (questuonTextArea.scrollHeight) + "px;overflow-y:hidden;");
+    questuonTextArea.addEventListener("input", OnInput, false);
 
 
     const addNewAns = document.getElementById("add-ans-button=" + newId);
