@@ -25,8 +25,8 @@ ${switchButton}
 
 export const getInputHTML = (type, display='block') => {
 	return `<div class="checkbox-container" id="container-ans">
-				<textarea autocomplete="off" type="${type}" class="checkbox-input " disabled></textarea>
-				<input autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans">
+				<input autocomplete="off" type="${type}" class="checkbox-input " disabled>
+				<textarea autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans"></textarea>
 				<button class="checkbox-text custom-button button-delete" style="display: ${display}"  id="delete-ans-button">
 					${svg.deleteIconCross}
 				</button>
