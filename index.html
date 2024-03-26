@@ -10,6 +10,8 @@
 
 <body>
 
+	
+
 	<div class="main-container" >
 		<div class="container-list" id="questions-list">
 			<div class="question-container " id="question=0">
@@ -17,6 +19,8 @@
 				<input type="text" autocomplete="off" placeholder="Описание" id="description" />
 			</div>
 		</div>
+
+		<input type="checkbox"  id="myCheckbox" disabled>
 
 
 		<button class="button-plus-text custom-button" id="add-question">
@@ -31,7 +35,7 @@
 		<div id="popup-background" style="display: none;">
 			<div id="popup-container">
 				<form id="type-selection-form" class="form-container">
-					<button class="button-delete" type="button" id="close" style="justify-self: end">
+					<button class="button-delete" type="sybnit" id="close" style="justify-self: end">
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 							fill="#000000" version="1.1" id="Capa_1" width="15px" height="15px"
 							viewBox="0 0 348.333 348.334" xml:space="preserve">
@@ -50,26 +54,6 @@
 		</div>
 
 	</div>
-
-	<!-- <form class="question-container" id="type-selection-form" style="display: none;">
-		<div class="checkbox-container">
-			<input type="radio" id="ony" name="one" class="checkbox-input">
-			<label for="one" class="checkbox-text">Один из списка</label>
-
-		</div>
-		<div class="checkbox-container">
-			<input type="radio" id="many" name="many" class="checkbox-input">
-			<label for="many" class="checkbox-text">Несколько из списка</label>
-		</div>
-		<div class="checkbox-container">
-			<input type="radio" id="text" name="text" class="checkbox-input">
-			<label for="text" class="checkbox-text">Текст</label>
-		</div>
-
-		<input type="sybmit" class="custom-button" value="Добавить" />
-
-	</form> -->
-
 
 
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>

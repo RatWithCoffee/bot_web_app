@@ -1,13 +1,26 @@
-import * as svg from './svg.js'	
+import * as svg from './svg.js'
+
+const switchButton = `
+	<div class="checkbox-container style="justify-content: flex-start;"">
+		<div class="switch-label " >Обязательный вопрос</div>
+		<div class="checkbox-text ">
+			<label class="switch">
+				<input type="checkbox" id="switch">
+				<span class="slider round"></span>
+			</label>
+		</div>
+	</div>
+	`;
 
 const textQuestion = `
 <div class="question-container" id="question">
 <div class="row">
-	<input  autocomplete="off" type="text" placeholder="Вопрос" id="text" />
+	<input  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%"/>
 	<button class="checkbox-text custom-button button-delete"  id="delete-q-button">
 		${svg.deleteIconBin}
 	</button>
 </div>
+${switchButton}
 `;
 
 export const getInputHTML = (type) => {
@@ -50,16 +63,7 @@ export const getQuestionHTML = (type) => {
 			</button>
 		
 		
-			<div class="checkbox-container">
-				<div>Обязательный вопрос</div>
-				<div class="checkbox-text">
-					<label class="switch">
-						<input type="checkbox" id="switch">
-						<span class="slider round"></span>
-					</label>
-				</div>
-		
-			</div>
+			${switchButton}
 		</div>
 		</div>
 	`;

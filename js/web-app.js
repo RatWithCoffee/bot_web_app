@@ -21,10 +21,14 @@ document.getElementById("type-selection-form").addEventListener("submit", (event
         case "text":
             handleAddQuestion(questionTypes.TEXT);
             break;
+        case "close":
+            console.log("close")
+            document.getElementById("popup-background").style.display = "none";
     }
 
 
     document.getElementById("popup-background").style.display = "none";
+    console.log("none")
 });
 
 const getNewQuestionId = () => {

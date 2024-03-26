@@ -186,6 +186,12 @@ button {
     height: 22px;
 }
 
+.switch-label {
+    font-size: medium;
+    width: 100%;
+    white-space: nowrap;
+}
+
 /* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
