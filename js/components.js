@@ -15,7 +15,7 @@ const switchButton = `
 const textQuestion = `
 <div class="question-container" id="question">
 <div class="row">
-	<input  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%"/>
+	<textarea  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%"></textarea>
 	<button class="checkbox-text custom-button button-delete"  id="delete-q-button">
 		${svg.deleteIconBin}
 	</button>
@@ -26,7 +26,7 @@ ${switchButton}
 export const getInputHTML = (type, display='block') => {
 	return `<div class="checkbox-container" id="container-ans">
 				<input autocomplete="off" type="${type}" class="checkbox-input " disabled>
-				<textarea autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans"></textarea>
+				<input autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans">
 				<button class="checkbox-text custom-button button-delete" style="display: ${display}"  id="delete-ans-button">
 					${svg.deleteIconCross}
 				</button>
@@ -46,7 +46,7 @@ export const getQuestionHTML = (type) => {
 	return `
 		<div class="question-container" id="question">
 		<div class="row">
-			<input autocomplete="off" type="text" placeholder="Вопрос" style="width: 100%" id="text" />
+			<textarea autocomplete="off" type="text" placeholder="Вопрос" style="width: 100%" id="text"></textarea>
 			<button class="checkbox-text custom-button button-delete" id="delete-q-button">
 				${svg.deleteIconBin}
 			</button>
