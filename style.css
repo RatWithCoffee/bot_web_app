@@ -59,7 +59,7 @@ svg {
     background: var(--tg-theme-secondary-bg-color);
     border-radius: 8px;
     gap: 0.6rem;
-    width: 80%;
+    width: 90%;
 }
 
 .row {

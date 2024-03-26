@@ -160,10 +160,11 @@ document.getElementById("survey").addEventListener("click", () => {
     let hasErrors = false;
     inputs.forEach(input => {
         if (input.value.trim() === '') {
+            hasErrors = true;
             input.classList.add('error'); // Добавляем класс empty для пустых полей
         } else {
             input.classList.remove('error'); // Убираем класс empty для заполненных полей
-            hasErrors = true;
+
         }
     });
 
@@ -177,12 +178,14 @@ document.getElementById("survey").addEventListener("click", () => {
         const errorMsg = document.getElementById("error-message");
         errorMsg.innerHTML = "Добавьте хотя бы один вопрос";
         errorMsg.style.display = "block";
+        return;
     }
 
     if (hasErrors) {
-        const errorMsg = document.getElementById("error-messsage");
+        const errorMsg = document.getElementById("error-message");
         errorMsg.innerHTML = "Заполните все поля формы";
         errorMsg.style.display = "block";
+        return;
     }
 
 
