@@ -67,7 +67,7 @@ const handleAddQuestion = (questionType) => {
 }
 
 
-function htmlToJson() {
+const htmlToJson = () => {
     var json = {}; // Объект JSON, который будет содержать информацию об опросе
     json.questions = []; // Массив для хранения вопросов
 
@@ -85,7 +85,6 @@ function htmlToJson() {
     console.log(questionContainers)
 
     slicedQuestionContainers.forEach(function (container) {
-        console.log(container)
         var question = {}; // Объект для хранения информации о вопросе
 
         // Получаем текст вопроса
@@ -119,15 +118,12 @@ function htmlToJson() {
     return json;
 }
 
-var result = htmlToJson();
-console.log(JSON.stringify(result, null, 4)); // Выводим JSON в консоль
 
 
 
 document.getElementById("survey").addEventListener("click", () => {
-    console.log(htmlToJson());
-
-    // console.log(JSON.stringify(surveyData));
-    // tg.sendData(JSON.stringify(surveyData));
-    // tg.close();
+    const surveyData = htmlToJson();
+    console.log(JSON.stringify(surveyData));
+    tg.sendData(JSON.stringify(surveyData));
+    tg.close();
 });
