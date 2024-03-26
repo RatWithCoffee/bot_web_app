@@ -109,7 +109,7 @@ const htmlToJson = () => {
 
         // Проверяем, является ли вопрос обязательным
         var switchInput = container.querySelector('[id^="switch"]');
-        question.optional = !switchInput.checked;
+        if (switchInput) question.optional = !switchInput.checked;
 
         // Добавляем вопрос в массив вопросов
         json.questions.push(question);
