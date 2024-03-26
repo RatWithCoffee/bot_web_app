@@ -285,6 +285,7 @@ textarea {
     transition: border-color 0.3s; /* Плавное изменение цвета границы */
     outline: none; /* Убираем контур фокуса */
     padding: 0.2rem;/* Граница при фокусе */
+    background-color: var(--tg-theme-bg-color);
 }
 
 textarea:focus {
