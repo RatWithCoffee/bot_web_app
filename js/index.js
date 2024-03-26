@@ -135,9 +135,10 @@ const htmlToJson = () => {
         }
 
         // Получаем все ответы на вопрос
-        var answers = container.querySelectorAll('[id^="q"]');
+        var answers = container.querySelectorAll('[id*=q]:not([id*=button])');
         question.answers = [];
         answers.forEach(function (answer) {
+            console.log(answer)
             question.answers.push(answer.value);
         });
 
