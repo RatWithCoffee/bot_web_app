@@ -26,9 +26,7 @@ export const getQuestion = (newId, questionType) => {
 }
 
 
-export const getInput = (questionId, type) => {
-	// TODO: edit algo
-	const answerNumber = document.getElementById("list=" + questionId).childElementCount + 1;
+export const getInput = (questionId, type, answerNumber) => {
 	const input = getInputHTML(type);
 
 	const newInput = input.replace(/id="([^"]*)"/g, (_, newId) => {
@@ -36,7 +34,11 @@ export const getInput = (questionId, type) => {
 			newId = "q" + questionId + "-ans=" + answerNumber;
 		} else if (newId === "delete-ans-button") {
 			newId = "q" + questionId + "-delete-ans-button=" + answerNumber;
-		} else {
+		} else if (newId === "container-ans") {
+			newId += "=" + answerNumber;
+		} else
+		
+		{
 			newId = newId ? newId : "";
 			newId += "=" + questionId;
 		}

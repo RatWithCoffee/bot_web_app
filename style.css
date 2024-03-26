@@ -28,8 +28,9 @@ body {
 }
 
 svg {
-    fill: var(--tg-theme-text-color); /* Установите желаемый цвет */
+    fill: var(--tg-theme-text-color); 
 }
+
 
 .main-container {
     display: flex;

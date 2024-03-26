@@ -3,7 +3,7 @@ import { questionTypes } from "./components.js";
 
 const tg = window.Telegram.WebApp;
 
-document.getElementById("add-question").addEventListener("click", function () {
+document.getElementById("add-question").addEventListener("click", () => {
     document.getElementById("popup-background").style.display = "flex";
 });
 
@@ -21,14 +21,10 @@ document.getElementById("type-selection-form").addEventListener("submit", (event
         case "text":
             handleAddQuestion(questionTypes.TEXT);
             break;
-        case "close":
-            console.log("close")
-            document.getElementById("popup-background").style.display = "none";
     }
 
 
     document.getElementById("popup-background").style.display = "none";
-    console.log("none")
 });
 
 const getNewQuestionId = () => {
@@ -39,6 +35,13 @@ const getNewQuestionId = () => {
     return newId;
 }
 
+const getNewAnswerId = (questionId) => {
+    const alist = document.getElementById("list=" + questionId);
+    const lastAnsDeleteButton = alist.querySelector(".checkbox-container:last-child");
+    const lastAnsId = parseInt(lastAnsDeleteButton.id.split("=")[1]);
+    return lastAnsId + 1;
+}
+
 const handleAddQuestion = (questionType) => {
     const newId = getNewQuestionId();
     const newQuestion = getComponent.getQuestion(newId, questionType);
@@ -47,17 +50,15 @@ const handleAddQuestion = (questionType) => {
 
 
     const addNewAns = document.getElementById("add-ans-button=" + newId);
-
     if (addNewAns) {
         addNewAns.addEventListener("click", () => {
-            const answerNum = document.getElementById("list=" + newId).childElementCount + 1;
-            const newInput = getComponent.getInput(newId, questionType);
+            const newAnswerId = getNewAnswerId(newId);
+            const newInput = getComponent.getInput(newId, questionType, newAnswerId);
             const list = document.getElementById("list=" + newId);
             list.insertAdjacentHTML('beforeEnd', newInput);
-            const deleteAns = document.getElementById("q" + newId + "-delete-ans-button=" + answerNum);
+            const deleteAns = document.getElementById("q" + newId + "-delete-ans-button=" + newAnswerId);
             deleteAns.addEventListener("click", () => {
-                const aForDeletion = document.getElementById("q" + newId + "-" + "ans=" + answerNum);
-                console.log(aForDeletion)
+                const aForDeletion = document.getElementById("q" + newId + "-" + "ans=" + newAnswerId);
                 aForDeletion.parentNode.remove();
             });
         });

@@ -23,11 +23,11 @@ const textQuestion = `
 ${switchButton}
 `;
 
-export const getInputHTML = (type) => {
-	return `<div class="checkbox-container">
+export const getInputHTML = (type, display='block') => {
+	return `<div class="checkbox-container" id="container-ans">
 				<input autocomplete="off" type="${type}" class="checkbox-input " disabled>
 				<input autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans">
-				<button class="checkbox-text custom-button button-delete" style="display: block" id="delete-ans-button">
+				<button class="checkbox-text custom-button button-delete" style="display: ${display}"  id="delete-ans-button">
 					${svg.deleteIconCross}
 				</button>
 			</div>
@@ -41,7 +41,7 @@ export const getQuestionHTML = (type) => {
 		return textQuestion
 	}
 
-	const input = getInputHTML(type);
+	const input = getInputHTML(type, 'none');
 
 	return `
 		<div class="question-container" id="question">
