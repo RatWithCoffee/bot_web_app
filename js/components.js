@@ -12,7 +12,7 @@ const textQuestion = `
 
 export const getInputHTML = (type) => {
 	return `<div class="checkbox-container">
-				<input type="${type}" class="checkbox-input" disabled>
+				<input type="${type}" class="checkbox-input " disabled>
 				<input type="text" class="checkbox-text" placeholder="Ответ" id="ans">
 				<button class="checkbox-text custom-button button-delete" style="display: block" id="delete-ans-button">
 					${svg.deleteIconCross}
