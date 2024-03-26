@@ -18,6 +18,7 @@
     --tg-theme-section-bg-color: #cccccc;
     --tg-theme-section-header-text-color: #000000;
     --tg-theme-subtitle-text-color: #666666;
+    --tg-theme-destructive-text-color: rgb(255, 0, 0); 
 }
 
 
@@ -75,6 +76,7 @@ input {
     outline: none;
     transition: border-color 0.3s ease;
     color: var(--tg-theme-text-color); 
+    padding: 0rem 0.3rem;
 }
 
 input:focus {
@@ -84,6 +86,7 @@ input:focus {
 input::placeholder {
     color: var(--tg-theme-hint-color);
     transition: color 0.3s ease;
+    padding: 0rem 0.3rem;
 }
 
 input:focus::placeholder {
@@ -279,7 +282,7 @@ input:checked+.slider:before {
 /* Остальные стили оставляем без изменений */
 textarea {
     border-radius: 10px; /* Задаем скругленные углы */
-    border: 1px solid transparent; /* Обычная граница */
+    /* border: 1px solid transparent;  */
     transition: border-color 0.3s; /* Плавное изменение цвета границы */
     outline: none; /* Убираем контур фокуса */
     padding: 0.1rem 0.4rem; /* Граница при фокусе */
@@ -291,4 +294,22 @@ textarea {
 
 textarea:focus {
     border-color: var(--tg-theme-button-color); /* Цвет границы при фокусе */
+}
+
+textarea::placeholder {
+    color: var(--tg-theme-hint-color); /* Задаем цвет placeholder'а */
+}
+
+input.error {
+   border-bottom: 1px solid var(--tg-theme-destructive-text-color); /* Добавляем стиль границы */
+}
+
+
+textarea.error {
+    border: 1px solid var(--tg-theme-destructive-text-color); /* Добавляем стиль границы */
+}
+
+
+.error-text {
+    color: var(--tg-theme-destructive-text-color);
 }

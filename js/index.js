@@ -1,6 +1,11 @@
 import * as getComponent from "./get_component.js"
 import { questionTypes } from "./components.js";
 
+// TODO
+// add validation
+// check html to json convertion
+// delete function, let
+
 const tg = window.Telegram.WebApp;
 
 const tx = document.getElementsByTagName("textarea");
@@ -58,6 +63,9 @@ const getNewAnswerId = (questionId) => {
 }
 
 const handleAddQuestion = (questionType) => {
+    const errorMsg = document.getElementById("error-message");
+    errorMsg.style.display = "none";
+
     const newId = getNewQuestionId();
     const newQuestion = getComponent.getQuestion(newId, questionType);
     const qlist = document.getElementById("questions-list");
@@ -90,6 +98,7 @@ const handleAddQuestion = (questionType) => {
 
     });
 }
+
 
 
 const htmlToJson = () => {
@@ -147,8 +156,40 @@ const htmlToJson = () => {
 
 
 document.getElementById("survey").addEventListener("click", () => {
+    const inputs = form.querySelectorAll('input[type="text"], textarea');
+    let hasErrors = false;
+    inputs.forEach(input => {
+        if (input.value.trim() === '') {
+            input.classList.add('error'); // Добавляем класс empty для пустых полей
+        } else {
+            input.classList.remove('error'); // Убираем класс empty для заполненных полей
+            hasErrors = true;
+        }
+    });
+
+    form.addEventListener('focus', (event) => {
+        if (event.target.matches('input[type="text"], textarea')) {
+            event.target.classList.remove('error');
+        }
+    }, true);
+
+    if (document.getElementById('questions-list').children.length === 1) {
+        const errorMsg = document.getElementById("error-message");
+        errorMsg.innerHTML = "Добавьте хотя бы один вопрос";
+        errorMsg.style.display = "block";
+    }
+
+    if (hasErrors) {
+        const errorMsg = document.getElementById("error-messsage");
+        errorMsg.innerHTML = "Заполните все поля формы";
+        errorMsg.style.display = "block";
+    }
+
+
     const surveyData = htmlToJson();
     console.log(JSON.stringify(surveyData));
     tg.sendData(JSON.stringify(surveyData));
     tg.close();
 });
+// //
+

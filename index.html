@@ -9,13 +9,15 @@
 </head>
 
 <body>
-	<div class="main-container" >
+	<div class="main-container" id="form">
 		<div class="container-list" id="questions-list">
 			<div class="question-container " id="question=0">
 				<input type="text"  autocomplete="off" placeholder="Название опроса" class="title" id="name" ></input>
 				<textarea type="text" autocomplete="off" placeholder="Описание" id="description" style="width: auto;"></textarea>
 			</div>
 		</div>
+
+		<div id="error-message" display="none" class="error-text"></div>
 
 		<button class="button-plus-text custom-button" id="add-question">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25">

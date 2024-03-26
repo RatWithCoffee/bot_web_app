@@ -5,7 +5,7 @@ const switchButton = `
 		<div class="switch-label " >Обязательный вопрос</div>
 		<div class="checkbox-text ">
 			<label class="switch">
-				<input type="checkbox" id="switch">
+				<input type="checkbox" id="switch" checked>
 				<span class="slider round"></span>
 			</label>
 		</div>
