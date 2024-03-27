@@ -5,31 +5,26 @@
 }
 
 
-:root {
-    --tg-theme-bg-color: #FFFFFF;
-    --tg-theme-text-color: #000000;
-    --tg-theme-hint-color: #999999;
-    --tg-theme-link-color: #0088CC;
-    --tg-theme-button-color: #0088CC;
-    --tg-theme-button-text-color: #FFFFFF;
-    --tg-theme-secondary-bg-color: #F5F5F5;
-    --tg-theme-header-bg-color: #0088CC;
-    --tg-theme-accent-text-color: #FFA500;
-    --tg-theme-section-bg-color: #cccccc;
-    --tg-theme-section-header-text-color: #000000;
-    --tg-theme-subtitle-text-color: #666666;
-    --tg-theme-destructive-text-color: rgb(255, 0, 0);
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark: white;
+        --info: #0075ac;
+        --bad: #DE3E62;
+        --gray: #444;
+        --dark-gray: #eeeeee;
+        --white: #131313;
+    }
 
-    /**
-    можешь переопределить используемые в библе цвета через свои переменные да и все
-    */
-    /* --dark: var(????);
-    --info: var(????);
-    --bad: var(????);
-    --gray: var(???);
-    --dark-gray: var(???); */
+    .inv {
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 
-    --white: white;
+    .input input,
+    textarea {
+        background-color: var(--white);
+        color: var(--dark);
+    }
 }
 
 i {
@@ -40,6 +35,8 @@ body {
     overflow: hidden;
     position: relative;
     height: 100vh;
+
+    background-color: var(--white);
 }
 
 .main-container {
@@ -97,13 +94,16 @@ body {
     font-size: 20px;
     -webkit-font-smoothing: antialiased;
     color: var(--info);
-    font-size: 2rem;
+    font-size: 1.84rem;
     content: "\f63a";
     position: absolute;
-    bottom: -1rem;
-    width: 2rem;
-    height: 2rem;
+    bottom: -1.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
     transform: translate(-50%, 0);
+    background-color: var(--white);
+    border: 6px solid var(--white);
+    border-radius: 50%;
     left: 50%;
 }
 
@@ -145,7 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0.8rem;
-    background: var(--tg-theme-secondary-bg-color);
+    background: var(--gray);
     border-radius: 8px;
     gap: 0.6rem;
     width: 90%;
@@ -162,7 +162,7 @@ body {
 @keyframes quest {
     0% {
         position: relative;
-        right: 30rem;
+        right: 100vw;
     }
 
     100% {
@@ -174,7 +174,7 @@ body {
 @keyframes quest-delete {
     100% {
         position: relative;
-        right: 30rem;
+        right: 100vw;
     }
 
     0% {
@@ -183,12 +183,6 @@ body {
     }
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .title {
     font-size: 20px;
@@ -197,63 +191,11 @@ body {
 .checkbox-container {
     display: flex;
     align-items: center;
-    /* Выравнивание по центру */
 }
 
 .checkbox-text {
     margin-left: 10px;
     width: 100%;
-}
-
-/* The slider */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--tg-theme-text-color);
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    width: 16px;
-    /* Уменьшаем ширину в 1.5 раза */
-    height: 16px;
-    /* Уменьшаем высоту в 1.5 раза */
-    left: 2px;
-    /* Смещаем слайдер влево */
-    bottom: 3px;
-    background-color: var(--tg-theme-bg-color);
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: var(--tg-theme-button-color);
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px var(--tg-theme-button-color);
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
 }
 
 
@@ -283,7 +225,7 @@ input:checked+.slider:before {
 }
 
 #popup-container {
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--gray);
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -302,6 +244,8 @@ input:checked+.slider:before {
 #close {
     padding: 0;
     margin-bottom: .5rem;
+    background: transparent;
+    border: none;
 }
 
 .question-container .btn.question-container__delete,
@@ -316,6 +260,14 @@ input:checked+.slider:before {
     font-size: .9rem;
 }
 
+.question-container .btn.answer__delete {
+    margin-left: 1rem;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: .9rem;
+}
+
 .question-container__delete {
     margin-left: .4rem;
 }
@@ -325,14 +277,12 @@ input:checked+.slider:before {
 }
 
 input.error {
-    border-bottom: 1px solid var(--tg-theme-destructive-text-color);
-    /* Добавляем стиль границы */
+    border-bottom: 1px solid var(--bad) !important;
 }
 
 
 textarea.error {
-    border: 1px solid var(--tg-theme-destructive-text-color);
-    /* Добавляем стиль границы */
+    border: 1px solid var(--bad) !important;
 }
 
 
