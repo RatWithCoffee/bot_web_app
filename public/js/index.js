@@ -156,7 +156,7 @@ const htmlToJson = () => {
         json.questions.push(question);
     });
 
-    return json;
+    return  "[" + json + "]";
 }
 
 
