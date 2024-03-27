@@ -16,7 +16,7 @@
 
 ## Ссылка на бота
 
-[Название бота](ссылка)
+https://github.com/RatWithCoffee/bot_web_app
 
 ## Инструкция
 
