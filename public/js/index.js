@@ -156,7 +156,7 @@ const htmlToJson = () => {
         json.questions.push(question);
     });
 
-    return  "[" + json + "]";
+    return  json;
 }
 
 
@@ -191,9 +191,10 @@ document.getElementById("survey").addEventListener("click", () => {
         return;
     }
 
-
     const surveyData = htmlToJson();
-    console.log(JSON.stringify(surveyData));
+    const arr = [surveyData];
+    
+    console.log(JSON.stringify(arr));
     tg.sendData(JSON.stringify(surveyData));
     tg.close();
 });
