@@ -87,7 +87,13 @@ const handleAddQuestion = (questionType) => {
                 window.location = window.location.toString().split('#')[0] + '#' + quest.querySelector('.question-container__add').id;
                 break;
             case 'delete-ans':
-                target.parentNode.remove();
+                console.log(target.parentNode.parentNode)
+                console.log(target.parentNode.parentNode.children)
+                console.log(target.parentNode.parentNode.children.length)
+                if (target.parentNode.parentNode.children.length !== 1) {
+                    target.parentNode.remove();
+                }
+                
                 break;
             case 'delete-quest':
                 document.getElementById("question=" + newId).classList.add('delete');
@@ -131,21 +137,10 @@ const htmlToJson = () => {
         var questionInput = container.querySelector('[id^="text"]');
         question.text = questionInput.value;
 
-        console.log("container",container)
-
-
         let ansContainer = container.querySelector('.checkbox-container')
+        console.log("ans container" ,ansContainer)
 
-        console.log(ansContainer)
 
-        // Определяем тип вопроса
-        // if (container.querySelector('input[type="radio"]')) {
-        //     question.type = "radio";
-        // } else if (container.querySelector('input[type="checkbox"]')) {
-        //     question.type = "checkbox";
-        // } else {
-        //     question.type = "text";
-        // }
         if (ansContainer.getAttribute('data-type') === 'radio') {
             question.type = "radio";
         } else if (ansContainer.getAttribute('data-type') === 'checkbox') {
@@ -153,6 +148,8 @@ const htmlToJson = () => {
         } else {
             question.type = "text";
         }
+
+        
 
         // Получаем все ответы на вопрос
         var options = container.querySelectorAll('[id*=q]:not([id*=button])');
@@ -185,7 +182,6 @@ document.getElementById("survey").addEventListener("click", () => {
             input.classList.add('error'); // Добавляем класс empty для пустых полей
         } else {
             input.classList.remove('error'); // Убираем класс empty для заполненных полей
-
         }
     });
 
@@ -194,6 +190,7 @@ document.getElementById("survey").addEventListener("click", () => {
             event.target.classList.remove('error');
         }
     }, true);
+
 
     if (document.getElementById('questions-list').children.length === 1) {
         _3Notify.warn("Добавьте хотя бы один вопрос").init();
