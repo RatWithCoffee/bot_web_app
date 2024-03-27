@@ -16,7 +16,7 @@
 
 ## Ссылка на бота
 
-https://github.com/RatWithCoffee/bot_web_app
+
 
 ## Инструкция
 
@@ -26,6 +26,6 @@ https://github.com/RatWithCoffee/bot_web_app
 2. Введите команду "/admin".
 3. Введите пароль для входа.
 
-## Ссылка на репозиторий к сайту админ панели
+## Ссылка на репозиторий к сайту админ-панели
 
-[Название репозитория]([ссылка](https://github.com/RatWithCoffee/bot_web_app)https://github.com/RatWithCoffee/bot_web_app)
+https://github.com/RatWithCoffee/bot_web_app
