@@ -141,11 +141,11 @@ const htmlToJson = () => {
         }
 
         // Получаем все ответы на вопрос
-        var answers = container.querySelectorAll('[id*=q]:not([id*=button])');
-        question.answers = [];
-        answers.forEach(function (answer) {
+        var options = container.querySelectorAll('[id*=q]:not([id*=button])');
+        question.options = [];
+        options.forEach(function (answer) {
             console.log(answer)
-            question.answers.push(answer.value);
+            question.options.push(answer.value);
         });
 
         // Проверяем, является ли вопрос обязательным
