@@ -131,10 +131,19 @@ const htmlToJson = () => {
         var questionInput = container.querySelector('[id^="text"]');
         question.text = questionInput.value;
 
+        let ansContainer = container.querySelector('.checkbox-container .answer')
+
         // Определяем тип вопроса
-        if (container.querySelector('input[type="radio"]')) {
+        // if (container.querySelector('input[type="radio"]')) {
+        //     question.type = "radio";
+        // } else if (container.querySelector('input[type="checkbox"]')) {
+        //     question.type = "checkbox";
+        // } else {
+        //     question.type = "text";
+        // }
+        if (ansContainer.getAttribute('data-type') === 'radio') {
             question.type = "radio";
-        } else if (container.querySelector('input[type="checkbox"]')) {
+        } else if (ansContainer.getAttribute('data-type') === 'checkbox') {
             question.type = "checkbox";
         } else {
             question.type = "text";
