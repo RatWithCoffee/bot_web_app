@@ -195,7 +195,7 @@ document.getElementById("survey").addEventListener("click", () => {
     const arr = [surveyData];
     
     console.log(JSON.stringify(arr));
-    tg.sendData(JSON.stringify(surveyData));
+    tg.sendData(JSON.stringify(arr));
     tg.close();
 });
 
