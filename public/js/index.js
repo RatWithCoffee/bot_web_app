@@ -1,16 +1,11 @@
 import * as getComponent from "./get_component.js"
 import { questionTypes } from "./components.js";
 
-// TODO
-// add validation
-// check html to json convertion
-// delete function, let
-
 const tg = window.Telegram.WebApp;
 
 const tx = document.getElementsByTagName("textarea");
 
-function OnInput() {
+const OnInput = () => {
     this.style.height = 'auto';
     this.style.height = (this.scrollHeight) + "px";
 }
@@ -87,13 +82,10 @@ const handleAddQuestion = (questionType) => {
                 window.location = window.location.toString().split('#')[0] + '#' + quest.querySelector('.question-container__add').id;
                 break;
             case 'delete-ans':
-                console.log(target.parentNode.parentNode)
-                console.log(target.parentNode.parentNode.children)
-                console.log(target.parentNode.parentNode.children.length)
                 if (target.parentNode.parentNode.children.length !== 1) {
                     target.parentNode.remove();
                 }
-                
+
                 break;
             case 'delete-quest':
                 document.getElementById("question=" + newId).classList.add('delete');
@@ -114,31 +106,31 @@ const handleAddQuestion = (questionType) => {
 
 
 const htmlToJson = () => {
-    var json = {}; // Объект JSON, который будет содержать информацию об опросе
+    let json = {}; // Объект JSON, который будет содержать информацию об опросе
     json.questions = []; // Массив для хранения вопросов
 
     // Получаем информацию об опросе
-    var nameInput = document.getElementById('name');
-    var descriptionInput = document.getElementById('description');
+    let nameInput = document.getElementById('name');
+    let descriptionInput = document.getElementById('description');
 
     json.name = nameInput.value; // Название опроса
     json.description = descriptionInput.value; // Описание опроса
 
     // Получаем все контейнеры с вопросами
-    var questionContainers = document.querySelectorAll('.question-container');
-    var questionContainersArray = Array.from(questionContainers);
-    var slicedQuestionContainers = questionContainersArray.slice(1);
+    let questionContainers = document.querySelectorAll('.question-container');
+    let questionContainersArray = Array.from(questionContainers);
+    let slicedQuestionContainers = questionContainersArray.slice(1);
     console.log(questionContainers)
 
-    slicedQuestionContainers.forEach(function (container) {
-        var question = {}; // Объект для хранения информации о вопросе
+    slicedQuestionContainers.forEach((container) => {
+        let question = {}; // Объект для хранения информации о вопросе
 
         // Получаем текст вопроса
-        var questionInput = container.querySelector('[id^="text"]');
+        let questionInput = container.querySelector('[id^="text"]');
         question.text = questionInput.value;
 
         let ansContainer = container.querySelector('.checkbox-container')
-        console.log("ans container" ,ansContainer)
+        console.log("ans container", ansContainer)
 
 
         if (ansContainer.getAttribute('data-type') === 'radio') {
@@ -149,25 +141,25 @@ const htmlToJson = () => {
             question.type = "text";
         }
 
-        
+
 
         // Получаем все ответы на вопрос
-        var options = container.querySelectorAll('[id*=q]:not([id*=button])');
+        let options = container.querySelectorAll('[id*=q]:not([id*=button])');
         question.options = [];
-        options.forEach(function (answer) {
+        options.forEach((answer) => {
             console.log(answer)
             question.options.push(answer.value);
         });
 
         // Проверяем, является ли вопрос обязательным
-        var switchInput = container.querySelector('[id^="switch"]');
+        let switchInput = container.querySelector('[id^="switch"]');
         if (switchInput) question.optional = !switchInput.checked;
 
         // Добавляем вопрос в массив вопросов
         json.questions.push(question);
     });
 
-    return  json;
+    return json;
 }
 
 
@@ -204,7 +196,7 @@ document.getElementById("survey").addEventListener("click", () => {
 
     const surveyData = htmlToJson();
     const arr = [surveyData];
-    
+
     console.log(JSON.stringify(arr));
     tg.sendData(JSON.stringify(arr));
     tg.close();
