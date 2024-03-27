@@ -58,45 +58,51 @@ const getNewQuestionId = () => {
 const getNewAnswerId = (questionId) => {
     const alist = document.getElementById("list=" + questionId);
     const lastAnsDeleteButton = alist.querySelector(".checkbox-container:last-child");
-    const lastAnsId = parseInt(lastAnsDeleteButton.id.split("=")[1]);
+    const lastAnsId = lastAnsDeleteButton ? parseInt(lastAnsDeleteButton.id.split("=")[1]) : 0;
     return lastAnsId + 1;
 }
 
 const handleAddQuestion = (questionType) => {
-    const errorMsg = document.getElementById("error-message");
-    errorMsg.style.display = "none";
-
     const newId = getNewQuestionId();
     const newQuestion = getComponent.getQuestion(newId, questionType);
     const qlist = document.getElementById("questions-list");
     qlist.insertAdjacentHTML('beforeEnd', newQuestion);
 
+    const quest = document.querySelector('.question-container:last-child');
+
+    quest.addEventListener("click", (event) => {
+        const { target } = event;
+        const { command } = target.dataset;
+        if (!command) {
+            return;
+        }
+
+        switch (command) {
+            case 'add-ans':
+                const newAnswerId = getNewAnswerId(newId);
+                const newInput = getComponent.getInput(newId, questionType, newAnswerId);
+                const list = document.getElementById("list=" + newId);
+                list.insertAdjacentHTML('beforeEnd', newInput);
+
+                window.location = window.location.toString().split('#')[0] + '#' + quest.querySelector('.question-container__add').id;
+                break;
+            case 'delete-ans':
+                target.parentNode.remove();
+                break;
+            case 'delete-quest':
+                document.getElementById("question=" + newId).classList.add('delete');
+                setTimeout(() => {
+                    document.getElementById("question=" + newId).remove();
+                }, 400)
+                break;
+        }
+    });
+
     const questuonTextArea = document.getElementById("text=" + newId);
-    console.log(questuonTextArea)
     questuonTextArea.setAttribute("style", "height:" + (questuonTextArea.scrollHeight) + "px;overflow-y:hidden;");
     questuonTextArea.addEventListener("input", OnInput, false);
 
-
-    const addNewAns = document.getElementById("add-ans-button=" + newId);
-    if (addNewAns) {
-        addNewAns.addEventListener("click", () => {
-            const newAnswerId = getNewAnswerId(newId);
-            const newInput = getComponent.getInput(newId, questionType, newAnswerId);
-            const list = document.getElementById("list=" + newId);
-            list.insertAdjacentHTML('beforeEnd', newInput);
-            const deleteAns = document.getElementById("q" + newId + "-delete-ans-button=" + newAnswerId);
-            deleteAns.addEventListener("click", () => {
-                const aForDeletion = document.getElementById("q" + newId + "-" + "ans=" + newAnswerId);
-                aForDeletion.parentNode.remove();
-            });
-        });
-    }
-
-    const deleteQuestion = document.getElementById("delete-q-button=" + newId);
-    deleteQuestion.addEventListener("click", () => {
-        document.getElementById("question=" + newId).remove();
-
-    });
+    window.location = window.location.toString().split('#')[0] + '#' + quest.id;
 }
 
 
@@ -176,16 +182,12 @@ document.getElementById("survey").addEventListener("click", () => {
     }, true);
 
     if (document.getElementById('questions-list').children.length === 1) {
-        const errorMsg = document.getElementById("error-message");
-        errorMsg.innerHTML = "Добавьте хотя бы один вопрос";
-        errorMsg.style.display = "block";
+        _3Notify.warn("Добавьте хотя бы один вопрос").init();
         return;
     }
 
     if (hasErrors) {
-        const errorMsg = document.getElementById("error-message");
-        errorMsg.innerHTML = "Заполните все поля формы";
-        errorMsg.style.display = "block";
+        _3Notify.warn("Заполните все поля формы").init();
         return;
     }
 
@@ -195,5 +197,4 @@ document.getElementById("survey").addEventListener("click", () => {
     tg.sendData(JSON.stringify(surveyData));
     tg.close();
 });
-// //
 

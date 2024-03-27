@@ -1,33 +1,41 @@
 import * as svg from './svg.js'
 
-const switchButton = `
-	<div class="checkbox-container style="justify-content: flex-start;"">
-		<div class="switch-label " >Обязательный вопрос</div>
-		<div class="checkbox-text ">
-			<label class="switch">
-				<input type="checkbox" id="switch" checked>
-				<span class="slider round"></span>
-			</label>
-		</div>
+const switchButton = (questNumber) => `
+<div class="checkbox-container flex-right">
+	<div class="switch">
+		<label class="switch__label" for="switch=${questNumber}">
+			<div class="switch__circle"></div>
+		</label>
+		<input class="switch__input" id="switch=${questNumber}" type="checkbox" checked>
 	</div>
+</div>
 	`;
 
-const textQuestion = `
-<div class="question-container" id="question">
-<div class="row">
-	<textarea  autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%;"></textarea>
-	<button class="checkbox-text custom-button button-delete"  id="delete-q-button">
-		${svg.deleteIconBin}
-	</button>
+const textQuestion = (questNumber) => `
+<div class="question-container" id="question=${questNumber}" data-type="text">
+	<div class="row flex-top">
+		<div class="textarea">
+			<textarea
+				placeholder="Итак..." id="text=${questNumber}"></textarea>
+			<div class="textarea__icon" onclick="this.parentElement.querySelector('textarea').value = ''">
+				<i class="i-delete-keyboard"></i>
+			</div>
+		</div>
+		<button class="btn bad-inv question-container__delete" id="delete-q-button=${questNumber}">
+			${svg.deleteIconBin}
+		</button>
+	</div>
+${switchButton(questNumber)}
 </div>
-${switchButton}
 `;
 
-export const getInputHTML = (type, display='block') => {
-	return `<div class="checkbox-container" id="container-ans">
-				<input autocomplete="off" type="${type}" class="checkbox-input " disabled>
-				<input autocomplete="off" type="text" class="checkbox-text" placeholder="Ответ" id="ans">
-				<button class="checkbox-text custom-button button-delete" style="display: ${display}"  id="delete-ans-button">
+export const getInputHTML = (type, questNumber, answerNumber) => {
+	return `<div class="checkbox-container answer" id="container-ans=${answerNumber}"  data-type="${type}">
+				<div class="input">
+				<div class="input__icon"><i class="${type === questionTypes.RADIO ? "i-bsp-ui-radios" : "i-bsp-ui-checks"}"></i></div>
+					<input autocomplete="off" type="text" value="" id="q${questNumber}-ans=${answerNumber}">
+				</div>
+				<button class="btn inv answer__delete" data-command="delete-ans"  id="q${questNumber}-delete-ans-button=${answerNumber}">
 					${svg.deleteIconCross}
 				</button>
 			</div>
@@ -36,40 +44,42 @@ export const getInputHTML = (type, display='block') => {
 
 
 
-export const getQuestionHTML = (type) => {
+export const getQuestionHTML = (type, questNumber, answerNumber) => {
 	if (type === questionTypes.TEXT) {
-		return textQuestion
+		return textQuestion(questNumber);
 	}
 
-	const input = getInputHTML(type, 'none');
+	const input = getInputHTML(type, questNumber, answerNumber);
 
 	return `
-		<div class="question-container" id="question">
-		<div class="row">
-			<textarea autocomplete="off" type="text" placeholder="Вопрос" id="text" style="width: 100%;"></textarea>
-			<button class="checkbox-text custom-button button-delete" id="delete-q-button">
+		<div class="question-container quest" id="question=${questNumber}">
+		<div class="row flex-top">
+		<div class="textarea">
+			<textarea
+				placeholder="Итак..." id="text=${questNumber}"></textarea>
+			<div class="textarea__icon" onclick="this.parentElement.querySelector('textarea').value = ''">
+				<i class="i-delete-keyboard"></i>
+			</div>
+		</div>
+			<button class="btn bad-inv question-container__delete" data-command="delete-quest" id="delete-q-button=${questNumber}">
 				${svg.deleteIconBin}
 			</button>
 		</div>
-		
-		<span id="list">
+		<div id="list=${questNumber}">
 			${input}
-		</span>
-		
-		
+		</div>
 		<div class="row">
-			<button class="custom-button button-plus" id="add-ans-button">
+			<button class="btn ok-inv question-container__add" data-command="add-ans" id="add-ans-button=${questNumber}">
 				${svg.plusIcon}
 			</button>
-		
-		
-			${switchButton}
+	
+			${switchButton(questNumber)}
 		</div>
 		</div>
 	`;
 }
 
 
-export const questionTypes = { CHECKBOX: "checkbox", RADIO: "radio", TEXT: "text" }
+export const questionTypes = { CHECKBOX: "checkbox", RADIO: "radio", TEXT: "text" };
 
 
