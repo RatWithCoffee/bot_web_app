@@ -18,28 +18,117 @@
     --tg-theme-section-bg-color: #cccccc;
     --tg-theme-section-header-text-color: #000000;
     --tg-theme-subtitle-text-color: #666666;
-    --tg-theme-destructive-text-color: rgb(255, 0, 0); 
+    --tg-theme-destructive-text-color: rgb(255, 0, 0);
+
+    /**
+    можешь переопределить используемые в библе цвета через свои переменные да и все
+    */
+    /* --dark: var(????);
+    --info: var(????);
+    --bad: var(????);
+    --gray: var(???);
+    --dark-gray: var(???); */
+
+    --white: white;
 }
 
+i {
+    pointer-events: none;
+}
 
 body {
-    background: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
-    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
 }
-
-svg {
-    fill: var(--tg-theme-text-color); 
-}
-
 
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    min-height: 100vh;
     gap: 1rem;
+    height: 100%;
+    overflow: auto;
+
+    padding-bottom: 6rem;
+    scroll-behavior: smooth;
+}
+
+
+.main-container__btns {
+    position: fixed;
+    transform: translate(-50%, 0);
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    gap: 6rem;
+    padding: .6rem;
+}
+
+.main-container__btns:before {
+    content: '';
+    position: absolute;
+    bottom: -7rem;
+    left: 50%;
+    background-color: var(--info);
+    width: 20rem;
+    height: 12rem;
+    border-radius: 50%;
+    transform: translate(-50%, 0);
+}
+
+.main-question {
+    position: fixed;
+    top: .4rem;
+    transform: translate(-50%, 0);
+    transition: transform .4s;
+    left: 50%;
+    z-index: 2;
+}
+
+.main-question:before {
+    font-family: '3style-icons' !important;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
+    color: var(--info);
+    font-size: 2rem;
+    content: "\f63a";
+    position: absolute;
+    bottom: -1rem;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-50%, 0);
+    left: 50%;
+}
+
+.main-question:has(#name:not(:placeholder-shown)) {
+    transform: translate(-50%, -40%);
+}
+
+.main-question:has(#description:not(:placeholder-shown)):has(#name:not(:placeholder-shown)),
+.main-container:has(.quest) .main-question {
+    transform: translate(-50%, -100%);
+}
+
+.main-question:hover {
+    transform: translate(-50%, 0) !important;
+}
+
+.main-container__btns .btn {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 2;
 }
 
 .container-list {
@@ -62,40 +151,43 @@ svg {
     width: 90%;
 }
 
+.quest {
+    animation: quest .4s forwards;
+}
+
+.quest.delete {
+    animation: quest-delete .4s forwards;
+}
+
+@keyframes quest {
+    0% {
+        position: relative;
+        right: 30rem;
+    }
+
+    100% {
+        position: relative;
+        right: 0rem;
+    }
+}
+
+@keyframes quest-delete {
+    100% {
+        position: relative;
+        right: 30rem;
+    }
+
+    0% {
+        position: relative;
+        right: 0rem;
+    }
+}
+
 .row {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-input {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid var(--tg-theme-hint-color);
-    outline: none;
-    transition: border-color 0.3s ease;
-    color: var(--tg-theme-text-color); 
-    padding: 0rem 0.3rem;
-}
-
-input:focus {
-    border-color: var(--tg-theme-button-color);
-}
-
-input::placeholder {
-    color: var(--tg-theme-hint-color);
-    transition: color 0.3s ease;
-    padding: 0rem 0.3rem;
-}
-
-input:focus::placeholder {
-    color: transparent;
-}
-
-input:focus {
-    cursor: pointer;
-    caret-color: var(--tg-theme-button-color);
 }
 
 .title {
@@ -111,95 +203,6 @@ input:focus {
 .checkbox-text {
     margin-left: 10px;
     width: 100%;
-}
-
-button {
-    cursor: pointer;
-}
-
-/* Стили кнопки */
-.custom-button {
-    display: inline-block;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--tg-theme-button-color);
-    color: var(--tg-theme-text-color);
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease;
-}
-
-.custom-button:hover {
-    transform: scale(1.1);
-    background-color: var(--tg-theme-button-color); 
-    /* Увеличение размера кнопки при наведении */
-}
-
-.custom-button:active {
-    transform: scale(1);
-    /* Уменьшение размера кнопки при нажатии */
-}
-
-
-
-.button-plus {
-    border-radius: 40px;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--tg-theme-text-color);
-    background-color: transparent;
-    align-self: flex-start;
-}
-
-
-.button-plus-text {
-    border-radius: 40px;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--tg-theme-text-color);
-}
-
-.button-delete {
-    border-radius: 50%;
-    width: 1.4rem;
-    height: 1.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    padding: 0px;
-}
-
-.button-delete:hover {
-    background-color: var(--tg-theme-button-color);
-}
-/*  */
-/* The switch - the box around the slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 22px;
-}
-
-.switch-label {
-    font-size: medium;
-    width: 100%;
-    white-space: nowrap;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
 }
 
 /* The slider */
@@ -218,9 +221,12 @@ button {
 .slider:before {
     position: absolute;
     content: "";
-    width: 16px; /* Уменьшаем ширину в 1.5 раза */
-    height: 16px; /* Уменьшаем высоту в 1.5 раза */
-    left: 2px; /* Смещаем слайдер влево */
+    width: 16px;
+    /* Уменьшаем ширину в 1.5 раза */
+    height: 16px;
+    /* Уменьшаем высоту в 1.5 раза */
+    left: 2px;
+    /* Смещаем слайдер влево */
     bottom: 3px;
     background-color: var(--tg-theme-bg-color);
     -webkit-transition: .4s;
@@ -261,6 +267,19 @@ input:checked+.slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 4;
+
+    animation: popup .4s forwards;
+}
+
+@keyframes popup {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 #popup-container {
@@ -277,39 +296,46 @@ input:checked+.slider:before {
     gap: 0.5rem;
     padding: 0.6rem;
     justify-content: end;
+    position: relative;
 }
 
-/* Остальные стили оставляем без изменений */
-textarea {
-    border-radius: 10px; /* Задаем скругленные углы */
-    /* border: 1px solid transparent;  */
-    transition: border-color 0.3s; /* Плавное изменение цвета границы */
-    outline: none; /* Убираем контур фокуса */
-    padding: 0.1rem 0.4rem; /* Граница при фокусе */
-    background-color: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
-    resize: none;
+#close {
+    padding: 0;
+    margin-bottom: .5rem;
+}
+
+.question-container .btn.question-container__delete,
+.question-container .btn.question-container__add {
+    padding: 0;
+    font-size: .9rem;
+}
+
+.question-container .btn.question-container__delete i,
+.question-container .btn.question-container__add i {
+    padding: .4rem;
+    font-size: .9rem;
+}
+
+.question-container__delete {
+    margin-left: .4rem;
+}
+
+.checkbox-container .input {
     width: 100%;
 }
 
-textarea:focus {
-    border-color: var(--tg-theme-button-color); /* Цвет границы при фокусе */
-}
-
-textarea::placeholder {
-    color: var(--tg-theme-hint-color); /* Задаем цвет placeholder'а */
-}
-
 input.error {
-   border-bottom: 1px solid var(--tg-theme-destructive-text-color); /* Добавляем стиль границы */
+    border-bottom: 1px solid var(--tg-theme-destructive-text-color);
+    /* Добавляем стиль границы */
 }
 
 
 textarea.error {
-    border: 1px solid var(--tg-theme-destructive-text-color); /* Добавляем стиль границы */
+    border: 1px solid var(--tg-theme-destructive-text-color);
+    /* Добавляем стиль границы */
 }
 
 
-.error-text {
-    color: var(--tg-theme-destructive-text-color);
+s3-notify {
+    width: 80vw;
 }
