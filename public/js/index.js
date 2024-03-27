@@ -131,7 +131,12 @@ const htmlToJson = () => {
         var questionInput = container.querySelector('[id^="text"]');
         question.text = questionInput.value;
 
-        let ansContainer = container.querySelector('.checkbox-container .answer')
+        console.log("container",container)
+
+
+        let ansContainer = container.querySelector('.checkbox-container')
+
+        console.log(ansContainer)
 
         // Определяем тип вопроса
         // if (container.querySelector('input[type="radio"]')) {
